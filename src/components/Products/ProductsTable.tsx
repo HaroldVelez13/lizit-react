@@ -1,3 +1,5 @@
+"use client";
+
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
 import deleteIcon from "../../../public/delete.svg";
@@ -18,8 +20,8 @@ const data = [
 
 export default function ProductsTable() {
   return (
-    <div className="bg-white  w-full border rounded-2xl   text-sm lg:text-base px-3">
-      <table className="table-auto w-full ">
+    <div className="bg-white  w-full border rounded-2xl    px-3">
+      <table className="table-auto w-full text-sm lg:text-base">
         <thead>
           <tr className=" text-blue-500 text-left font-bold  border-b-2">
             <th className=" my-auto px-2 py-4 w-0 sm:w-2/12 hidden sm:block">
