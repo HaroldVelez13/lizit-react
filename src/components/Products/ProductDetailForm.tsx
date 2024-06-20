@@ -1,5 +1,5 @@
+import ProductDetailImage from "@/components/Products/ProductDetailImage";
 import ProductsForm from "@/components/Products/ProductForm";
-import ProductFormImage from "@/components/Products/ProductFormImage";
 
 type IProps = {
   disabled?: boolean;
@@ -12,7 +12,7 @@ export default function ProductDetailForm({
   return (
     <section className="max-w-7xl  grid grid-cols-1 lg:grid-cols-2 gap-4 mt-10 align-middle  ">
       <ProductsForm disabled={disabled} />
-      <ProductFormImage />
+      <ProductDetailImage />
       {children}
     </section>
   );
