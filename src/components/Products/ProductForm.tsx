@@ -15,11 +15,11 @@ export default function ProductsForm({ disabled = false }: IProps) {
             Nombre*
           </label>
           <input
-            disabled
+            disabled={disabled ?? false}
             type="text"
             id="nombre"
             name="nombre"
-            className=" text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 py-2 px-1  focus-visible:outline-none  focus-visible:border-blue-50"
+            className=" text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 p-2  focus-visible:outline-none  focus-visible:border-blue-50"
           />
         </div>
         <div className="flex flex-col mb-6 mr-3">
@@ -29,10 +29,10 @@ export default function ProductsForm({ disabled = false }: IProps) {
             Categoria*
           </label>
           <select
-            disabled
+            disabled={disabled ?? false}
             id="categoria"
             name="categoria"
-            className="text-gray-500 disabled:text-white bg-white disabled:bg-gray-400 shadow rounded-xl border-2 border-blue-50 py-2 px-1 disabled:border-gray-400  focus-visible:outline-none  focus-visible:border-blue-50">
+            className="text-gray-500 disabled:text-white bg-white disabled:bg-gray-400 shadow rounded-xl border-2 border-blue-50 p-2 disabled:border-gray-400  focus-visible:outline-none  focus-visible:border-blue-50">
             {categorias.map((categoria) => (
               <option key={categoria.value} value={categoria.value}>
                 {categoria.label}
@@ -47,11 +47,11 @@ export default function ProductsForm({ disabled = false }: IProps) {
             Description*
           </label>
           <textarea
-            disabled
+            disabled={disabled ?? false}
             id="description"
             name="description"
             rows={4}
-            className="text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 py-2 px-1  focus-visible:outline-none  focus-visible:border-blue-50"
+            className="text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 p-2  focus-visible:outline-none  focus-visible:border-blue-50"
           />
         </div>
 
@@ -64,7 +64,7 @@ export default function ProductsForm({ disabled = false }: IProps) {
           <div className="flex items-center">
             <span className="relative text-gray-900 -mr-5 z-10">$</span>
             <input
-              disabled
+              disabled={disabled ?? false}
               type="number"
               id="tarifa_base"
               name="tarifa_base"

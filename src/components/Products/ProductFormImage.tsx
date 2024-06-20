@@ -16,7 +16,7 @@ export default function ProductFormImage() {
             <div className="col-span-12 sm:col-span-9 flex flex-col">
               <input
                 type="text"
-                className=" text-gray-500  shadow rounded-xl border-2 border-blue-50 py-2 px-1  focus-visible:outline-none  focus-visible:border-blue-50"
+                className=" text-gray-500  shadow rounded-xl border-2 border-blue-50 p-2   focus-visible:outline-none  focus-visible:border-blue-50"
               />
             </div>
             <div className="col-span-12 sm:col-span-3 flex flex-col text-sm my-auto">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import backIcon from "../../../public/back.svg";
 import Lizit from "../../../public/lizit.svg";
 type IProps = {
@@ -7,7 +8,9 @@ export default function ProductHeader({ name }: IProps) {
   return (
     <div className="grid grid-cols-2 mt-0  lg:-mt-10">
       <div className="flex ">
-        <img src={backIcon.src} className="w-6 h-6 cursor-pointer my-auto" />
+        <Link href="/" className="flex my-auto">
+          <img src={backIcon.src} className="w-6 h-6 my-auto" />
+        </Link>
         <span className="text-3xl font-semibold ml-5 my-auto">{name}</span>
       </div>
       <div className=" flex  justify-end order-last">

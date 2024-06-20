@@ -2,6 +2,7 @@
 
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
+import Link from "next/link";
 import deleteIcon from "../../../public/delete.svg";
 import updateIcon from "../../../public/update.svg";
 
@@ -53,8 +54,12 @@ export default function ProductsTable() {
               </td>
               <td className="p-2 ">{item.tarifaBase}</td>
               <td className="py-2 px-1 flex items-center justify-around py-auto">
-                <ButtonBase text="Ver" />
-                <FabButton icon={updateIcon} />
+                <Link href="/detalle/hola" className="flex my-auto">
+                  <ButtonBase text="Ver" />
+                </Link>
+                <Link href="/editar/hola" className="flex my-auto">
+                  <FabButton icon={updateIcon} />
+                </Link>
                 <FabButton icon={deleteIcon} />
               </td>
             </tr>
