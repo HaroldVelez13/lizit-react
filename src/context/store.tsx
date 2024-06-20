@@ -1,26 +1,39 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 
+export interface IRating {
+  rate: number;
+  count: number;
+}
+export interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: IRating;
+}
 interface ContextProps {
-  product: object;
-  setProduct: (prodcut: object) => void;
-  products: Array<object>;
-  setProducts: (products: Array<object>) => void;
+  product: IProduct;
+  setProduct: (prodcut: IProduct) => void;
+  products: IProduct[];
+  setProducts: (products: IProduct[]) => void;
 }
 
 export const GlobalContext = createContext<ContextProps>({
-  product: {},
+  product: {} as IProduct,
   setProduct: () => {},
-  products: [],
-  setProducts: (products: Array<object>) => [],
+  products: [] as IProduct[],
+  setProducts: (products: IProduct[]) => [],
 });
 
 type IProps = {
   children: React.ReactNode;
 };
 export const GlobalContextProvider = ({ children }: IProps) => {
-  const [product, setProduct] = useState({});
-  const [products, setProducts] = useState([{}]);
+  const [product, setProduct] = useState<IProduct>({} as IProduct);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   return (
     <GlobalContext.Provider

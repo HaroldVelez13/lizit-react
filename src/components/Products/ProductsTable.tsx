@@ -1,12 +1,9 @@
-"use client";
-
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
 import Link from "next/link";
-import { useEffect } from "react";
 import deleteIcon from "../../../public/delete.svg";
 import updateIcon from "../../../public/update.svg";
-import { useGlobalContext } from "../../context/store";
+import { IProduct } from "../../context/store";
 
 const data = [
   {
@@ -21,11 +18,11 @@ const data = [
   // Add more objects following the same structure for other table rows
 ];
 
-export default function ProductsTable() {
-  const { product } = useGlobalContext();
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
+type IProps = {
+  products: IProduct[];
+};
+
+export default function ProductsTable({ products }: IProps) {
   return (
     <div className="bg-white  w-full border rounded-2xl    px-3">
       <table className="table-auto w-full text-sm lg:text-base">
@@ -44,21 +41,21 @@ export default function ProductsTable() {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.nombre}>
+          {products.map((product) => (
+            <tr key={product.id}>
               <td className="p-2 hidden sm:block">
                 <img
-                  src={item.foto}
-                  alt={item.nombre}
+                  src={product.image}
+                  alt={product.title}
                   className="w-10 h-10 object-cover "
                 />
               </td>
-              <td className="p-2  ">{item.nombre}</td>
-              <td className="p-2  ">{item.categoria}</td>
+              <td className="p-2  ">{product.title}</td>
+              <td className="p-2  ">{product.category}</td>
               <td className="p-2  hidden sm:block ">
-                {item.descripcion.slice(0, 40) + "..."}
+                {product.description.slice(0, 40) + "..."}
               </td>
-              <td className="p-2 ">{item.tarifaBase}</td>
+              <td className="p-2 ">{product.price}</td>
               <td className="py-2 px-1 flex items-center justify-around py-auto">
                 <Link href="/detalle/hola" className="flex my-auto">
                   <ButtonBase text="Ver" />
