@@ -3,8 +3,10 @@
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
 import Link from "next/link";
+import { useEffect } from "react";
 import deleteIcon from "../../../public/delete.svg";
 import updateIcon from "../../../public/update.svg";
+import { useGlobalContext } from "../../context/store";
 
 const data = [
   {
@@ -20,6 +22,10 @@ const data = [
 ];
 
 export default function ProductsTable() {
+  const { product } = useGlobalContext();
+  useEffect(() => {
+    console.log(product);
+  }, [product]);
   return (
     <div className="bg-white  w-full border rounded-2xl    px-3">
       <table className="table-auto w-full text-sm lg:text-base">
