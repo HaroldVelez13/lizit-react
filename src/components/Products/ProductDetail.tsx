@@ -15,10 +15,10 @@ export default function ProductDetail({ slug }: IProps) {
   }, []);
   return (
     <>
-      <ProductHeader name="hola" />
+      <ProductHeader name={product.title} />
       <ProductDetailForm disabled={true}>
         <div className="col-span-2 mt-5">
-          <Link href="/editar/hola">
+          <Link href={`/editar/${product.id}`}>
             <button className="mx-2 w-60 float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold    rounded-full  px-5 py-2.5  mb-2 shadow-sm  ">
               Editar
             </button>

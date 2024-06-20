@@ -3,7 +3,7 @@ import FabButton from "@/components/base/FabButton";
 import Link from "next/link";
 import deleteIcon from "../../../public/delete.svg";
 import updateIcon from "../../../public/update.svg";
-import { IProduct } from "../../context/store";
+import { IProduct, useGlobalContext } from "../../context/store";
 
 const data = [
   {
@@ -23,6 +23,10 @@ type IProps = {
 };
 
 export default function ProductsTable({ products }: IProps) {
+  const { setProduct } = useGlobalContext();
+  const handleShow = (product: IProduct) => {
+    setProduct(product);
+  };
   return (
     <div className="bg-white  w-full border rounded-2xl    px-3">
       <table className="table-auto w-full text-sm lg:text-base">
@@ -47,7 +51,7 @@ export default function ProductsTable({ products }: IProps) {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-10 h-10 object-cover "
+                  className="w-10 h-10 object-cover rounded-xl"
                 />
               </td>
               <td className="p-2  ">{product.title}</td>
@@ -55,12 +59,18 @@ export default function ProductsTable({ products }: IProps) {
               <td className="p-2  hidden sm:block ">
                 {product.description.slice(0, 40) + "..."}
               </td>
-              <td className="p-2 ">{product.price}</td>
+              <td className="p-2 ">${product.price}</td>
               <td className="py-2 px-1 flex items-center justify-around py-auto">
-                <Link href="/detalle/hola" className="flex my-auto">
+                <Link
+                  href={`/detalle/${product.id}`}
+                  className="flex my-auto"
+                  onClick={() => handleShow(product)}>
                   <ButtonBase text="Ver" />
                 </Link>
-                <Link href="/editar/hola" className="flex my-auto">
+                <Link
+                  href={`/editar/${product.id}`}
+                  className="flex my-auto"
+                  onClick={() => handleShow(product)}>
                   <FabButton icon={updateIcon} />
                 </Link>
                 <FabButton icon={deleteIcon} />

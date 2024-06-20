@@ -11,7 +11,7 @@ export default function ProductHeader({ name }: IProps) {
         <Link href="/" className="flex my-auto">
           <img src={backIcon.src} className="w-6 h-6 my-auto" />
         </Link>
-        <span className="text-3xl font-semibold ml-5 my-auto">{name}</span>
+        <span className="text-xl font-semibold ml-5 my-auto">{name}</span>
       </div>
       <div className=" flex  justify-end order-last">
         <img

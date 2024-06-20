@@ -2,13 +2,18 @@
 import ProducstSearchs from "@/components/Products/ProducstSearchs";
 import ProductsHeader from "@/components/Products/ProductsHeader";
 import ProductsTable from "@/components/Products/ProductsTable";
+import Skeleton from "@/components/base/Skeleton";
+import { IProduct } from "../../context/store";
 
-export default function ProductsPage({ products }: any) {
+type IProps = {
+  products: IProduct[];
+};
+export default function ProductsPage({ products }: IProps) {
   return (
     <>
       <ProductsHeader />
       <ProducstSearchs />
-      <ProductsTable products={products} />
+      {!products.length ? <Skeleton /> : <ProductsTable products={products} />}
     </>
   );
 }
