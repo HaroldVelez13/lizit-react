@@ -1,15 +1,17 @@
 "use client ";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useId } from "react";
 import { useForm } from "react-hook-form";
-import { useGlobalContext } from "../../context/store";
+import { IProduct, useGlobalContext } from "../../context/store";
 import ProductSchema from "../../schema/ProductSchema";
 
 type IProps = {
   disabled?: boolean;
-  children: JSX.Element;
+  submitRef: any;
 };
-export default function ProductsForm({ children, disabled = false }: IProps) {
-  const { product, categories } = useGlobalContext();
+export default function ProductsForm({ disabled = false, submitRef }: IProps) {
+  const { product, categories, products, setProducts } = useGlobalContext();
+  const new_id = useId();
   const {
     register,
     handleSubmit,
@@ -18,10 +20,23 @@ export default function ProductsForm({ children, disabled = false }: IProps) {
     resolver: yupResolver(ProductSchema),
     defaultValues: product ? product : {},
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => {
+    console.log("from form: ", data);
+    if (!product.id) {
+      const _product: IProduct = {
+        id: new_id,
+        image: "",
+        ...data,
+      };
+      const _products = products;
+      _products.push(_product);
+      setProducts(_products);
+      console.log("Product created: ", _product);
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <div className="col-span-2 lg:col-span-1">
         <div className="flex flex-col mb-6 mr-3">
           <label htmlFor="title" className="text-blue-50 font-semibold mb-2">
@@ -90,7 +105,7 @@ export default function ProductsForm({ children, disabled = false }: IProps) {
           </div>
         </div>
       </div>
-      {children}
+      <button ref={submitRef} type="submit" className="invisible" />
     </form>
   );
 }
