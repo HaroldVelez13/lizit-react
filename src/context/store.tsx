@@ -19,6 +19,8 @@ interface ContextProps {
   setProduct: (prodcut: IProduct) => void;
   products: IProduct[];
   setProducts: (products: IProduct[]) => void;
+  categories: string[];
+  setCategories: (categories: string[]) => void;
 }
 
 export const GlobalContext = createContext<ContextProps>({
@@ -26,6 +28,8 @@ export const GlobalContext = createContext<ContextProps>({
   setProduct: () => {},
   products: [] as IProduct[],
   setProducts: (products: IProduct[]) => [],
+  categories: [],
+  setCategories: (categories: string[]) => [],
 });
 
 type IProps = {
@@ -34,6 +38,7 @@ type IProps = {
 export const GlobalContextProvider = ({ children }: IProps) => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   return (
     <GlobalContext.Provider
@@ -42,6 +47,8 @@ export const GlobalContextProvider = ({ children }: IProps) => {
         setProduct,
         products,
         setProducts,
+        categories,
+        setCategories,
       }}>
       {children}
     </GlobalContext.Provider>

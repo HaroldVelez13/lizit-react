@@ -2,7 +2,6 @@
 import ProductDetailForm from "@/components/Products/ProductDetailForm";
 import ProductHeader from "@/components/Products/ProductHeader";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useGlobalContext } from "../../context/store";
 
 type IProps = {
@@ -10,9 +9,7 @@ type IProps = {
 };
 export default function ProductDetail({ slug }: IProps) {
   const { product } = useGlobalContext();
-  useEffect(() => {
-    console.log("product: ", product);
-  }, []);
+
   return (
     <>
       <ProductHeader name={product.title} />
