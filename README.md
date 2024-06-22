@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+### Functional demo:
+
+[Demo](https://lizit-react.vercel.app/)
+
+## Project developed with:
+
+- Form Validation: React Hook Form and Yup for robust and reliable forms.
+- Design: Tailwind CSS, a flexible and efficient CSS framework for creating attractive interfaces.
+- Notifications - React Hot Toast, a library for displaying friendly and customizable user notifications.
+- Animations and Modals: Headless UI, a set of primitive components for creating fluid and interactive animations and modals.
+- Development environment: Next.js with TypeScript for a fast, scalable and secure development experience.
 
 ## Getting Started
 
