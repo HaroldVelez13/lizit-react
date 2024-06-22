@@ -1,4 +1,4 @@
-import ProductUpdate from "@/components/Products/ProductUpdate";
+import ProductUpdate from "@/components/Products/ProductUpdate/ProductUpdate";
 import GridPrincipal from "@/components/base/GridPrincipal";
 
 export default function Detail({ params }: { params: { slug: string } }) {

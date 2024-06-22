@@ -1,6 +1,6 @@
 import Link from "next/link";
-import backIcon from "../../../public/back.svg";
-import Lizit from "../../../public/lizit.svg";
+import backIcon from "/public/back.svg";
+import Lizit from "/public/lizit.svg";
 type IProps = {
   name: string;
 };

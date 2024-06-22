@@ -1,11 +1,12 @@
 "use client";
-import ProductDelete from "@/components/Products/ProductDelete";
-import ProductDetailImage from "@/components/Products/ProductDetailImage";
-import ProductsForm from "@/components/Products/ProductForm";
+
+import ProductDetailImage from "@/components/Products/ProductsDetail/ProductDetailImage";
+import ProductDelete from "@/components/Products/common/ProductDelete";
+import ProductsForm from "@/components/Products/common/ProductForm";
+import { IProduct, useGlobalContext } from "@/context/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
-import { IProduct, useGlobalContext } from "../../context/store";
 
 type IProps = {
   disabled?: boolean;

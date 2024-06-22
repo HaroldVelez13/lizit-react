@@ -1,5 +1,5 @@
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
-import closeIcon from "../../../public/close.svg";
+import closeIcon from "/public/close.svg";
 
 type IProps = {
   isOpen: boolean;

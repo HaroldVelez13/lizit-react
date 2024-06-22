@@ -1,5 +1,6 @@
 "use client";
-import ProductsPage from "@/components/Products/ProductsPage";
+
+import ProductsPage from "@/components/Products/ProductsList/ProductsPage";
 import GridPrincipal from "@/components/base/GridPrincipal";
 import { useEffect } from "react";
 import { IProduct, useGlobalContext } from "../context/store";

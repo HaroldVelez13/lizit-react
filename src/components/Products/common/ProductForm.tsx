@@ -1,8 +1,8 @@
 "use client ";
+import { IProduct } from "@/context/store";
+import ProductSchema from "@/schema/ProductSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { IProduct } from "../../context/store";
-import ProductSchema from "../../schema/ProductSchema";
 
 type IProps = {
   submitRef: any;

@@ -1,10 +1,11 @@
 "use client";
-import ProductDetailImage from "@/components/Products/ProductDetailImage";
-import ProductsForm from "@/components/Products/ProductForm";
+
+import ProductDetailImage from "@/components/Products/ProductsDetail/ProductDetailImage";
+import ProductsForm from "@/components/Products/common/ProductForm";
+import { IProduct, useGlobalContext } from "@/context/store";
 import Link from "next/link";
 import { useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { IProduct, useGlobalContext } from "../../context/store";
 
 type IProps = {
   disabled?: boolean;

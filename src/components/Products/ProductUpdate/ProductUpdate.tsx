@@ -1,10 +1,11 @@
 "use client";
-import ProductHeader from "@/components/Products/ProductHeader";
-import ProductUpdateForm from "@/components/Products/ProductUpdateForm";
+
+import ProductUpdateForm from "@/components/Products/ProductUpdate/ProductUpdateForm";
+import ProductHeader from "@/components/Products/common/ProductHeader";
 import Skeleton from "@/components/base/Skeleton";
+import { useGlobalContext } from "@/context/store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useGlobalContext } from "../../context/store";
 
 type IProps = {
   slug: string | string[] | undefined;

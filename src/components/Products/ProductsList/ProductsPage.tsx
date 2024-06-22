@@ -1,9 +1,10 @@
 "use client";
-import ProducstSearchs from "@/components/Products/ProducstSearchs";
-import ProductsHeader from "@/components/Products/ProductsHeader";
-import ProductsTable from "@/components/Products/ProductsTable";
+
+import ProducstSearchs from "@/components/Products/ProductsList/ProducstSearchs";
+import ProductsTable from "@/components/Products/ProductsList/ProductsTable";
+import ProductsHeader from "@/components/Products/common/ProductsHeader";
 import Skeleton from "@/components/base/Skeleton";
-import { IProduct } from "../../context/store";
+import { IProduct } from "@/context/store";
 
 type IProps = {
   products: IProduct[];

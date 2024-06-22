@@ -1,13 +1,14 @@
 "use client";
-import ProductsForm from "@/components/Products/ProductForm";
-import ProductFormImage from "@/components/Products/ProductFormImage";
+
+import ProductFormImage from "@/components/Products/ProductsList/ProductFormImage";
+import ProductsForm from "@/components/Products/common/ProductForm";
+import { IProduct, useGlobalContext } from "@/context/store";
 import { useRef, useState } from "react";
-import { IProduct, useGlobalContext } from "../../context/store";
 
 type IProps = {
-  setIsOpen: (open: boolean) => void;
+  handleCreate: () => void;
 };
-export default function ProductCreationForm({ setIsOpen }: IProps) {
+export default function ProductCreationForm({ handleCreate }: IProps) {
   const submitRef = useRef<HTMLInputElement>();
   const { product, categories, products, setProducts } = useGlobalContext();
   const [images, setImages] = useState<string[]>([]);
@@ -24,7 +25,7 @@ export default function ProductCreationForm({ setIsOpen }: IProps) {
       ...data,
     };
     setProducts([...products, _product]);
-    setIsOpen(false);
+    handleCreate();
   };
   const handleAddImage = (img: string) => {
     if (images.length === 0) {

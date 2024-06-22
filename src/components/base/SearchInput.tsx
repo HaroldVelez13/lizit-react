@@ -1,7 +1,7 @@
 "use client";
+import { useGlobalContext } from "@/context/store";
 import { useState } from "react";
-import search from "../../../public/search.svg";
-import { useGlobalContext } from "../../context/store";
+import search from "/public/search.svg";
 
 export default function SearchInput() {
   const [filter, setFilter] = useState("");

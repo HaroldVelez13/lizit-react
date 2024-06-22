@@ -1,12 +1,13 @@
-import ProductDelete from "@/components/Products/ProductDelete";
+"use client";
+import ProductDelete from "@/components/Products/common/ProductDelete";
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
+import { IProduct, useGlobalContext } from "@/context/store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import deleteIcon from "../../../public/delete.svg";
-import updateIcon from "../../../public/update.svg";
-import { IProduct, useGlobalContext } from "../../context/store";
+import deleteIcon from "/public/delete.svg";
+import updateIcon from "/public/update.svg";
 
 export default function ProductsTable() {
   const { setProduct, products, productsFilter, setProducts } =
