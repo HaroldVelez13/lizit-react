@@ -1,22 +1,26 @@
-import AddProduct from "../../../public/test.png";
+"use client";
 
-export default function ProductDetailImage() {
+type IProps = {
+  images: string[];
+  image: string;
+};
+export default function ProductDetailImage({ image, images }: IProps) {
   return (
     <div className="flex">
-      <div className="w-9/12 p-5 my-auto">
+      <div className="w-9/12 p-5 m-5 my-auto">
         <img
-          src={AddProduct.src}
+          src={image}
           alt={"largeImageAlt"}
-          className="object-cover h-auto w-full rounded-2xl "
+          className="object-cover max-h-96  max-w-96   m-auto rounded-2xl bg-white p-5"
         />
       </div>
-      <div className="grid grid-cols-1 gap-3 w-3/12 ">
-        {[3, 2, 5, 6, 7].map((_, index) => (
+      <div className="grid grid-cols-1  w-3/12  ">
+        {images.map((img, index) => (
           <img
-            key={index} // Important for performance with dynamic data
-            src={AddProduct.src}
-            alt={"smallImageAlt"}
-            className="object-cover h-full w-auto rounded-2xl"
+            key={img + index} // Important for performance with dynamic data
+            src={img}
+            alt={"product-image" + index}
+            className="object-cover h-40 w-40 bg-white p-2 m-2 rounded-2xl"
           />
         ))}
       </div>

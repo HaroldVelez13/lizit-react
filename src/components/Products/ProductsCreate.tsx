@@ -8,7 +8,7 @@ type IProps = {
 export default function ProductsCreate({ isOpen, setIsOpen }: IProps) {
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <ProductCreationForm />
+      <ProductCreationForm setIsOpen={setIsOpen} />
     </Modal>
   );
 }

@@ -6,6 +6,7 @@ import { IProduct, useGlobalContext } from "../context/store";
 
 export default function Home() {
   const { products, setProducts, setCategories } = useGlobalContext();
+
   const getProducts = async () => {
     const res = await fetch("https://fakestoreapi.com/products");
     const _products: IProduct[] = await res.json();
@@ -20,6 +21,7 @@ export default function Home() {
       getProducts();
     }
   }, []);
+
   return (
     <GridPrincipal>
       <ProductsPage products={products} />

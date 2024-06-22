@@ -13,7 +13,7 @@ export default function ProductsPage({ products }: IProps) {
     <>
       <ProductsHeader />
       <ProducstSearchs />
-      {!products.length ? <Skeleton /> : <ProductsTable products={products} />}
+      {!products.length ? <Skeleton /> : <ProductsTable />}
     </>
   );
 }

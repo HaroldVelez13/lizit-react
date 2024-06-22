@@ -1,34 +1,50 @@
+import ProductDelete from "@/components/Products/ProductDelete";
 import ButtonBase from "@/components/base/ButtonBase";
 import FabButton from "@/components/base/FabButton";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import deleteIcon from "../../../public/delete.svg";
 import updateIcon from "../../../public/update.svg";
 import { IProduct, useGlobalContext } from "../../context/store";
 
-const data = [
-  {
-    foto: "Imagen", // Replace with an image path or URL if available
-    nombre: 'Sierra Circular 7 1/4"',
-    categoria: "Electric",
-    descripcion:
-      "Lorem ipsum dolor sit amet consectetur. Nibh lacus non in amet pulvinar lectus aliquet tincidunt.",
-    tarifaBase: "$60.000",
-    ver: "Ver",
-  },
-  // Add more objects following the same structure for other table rows
-];
+export default function ProductsTable() {
+  const { setProduct, products, productsFilter, setProducts } =
+    useGlobalContext();
+  const [_product, _setProduct] = useState<IProduct>({} as IProduct);
+  const [ipsOpen, setIsOpen] = useState<boolean>(false);
+  const [prodcutsList, setPorductsList] = useState<IProduct[]>([]);
 
-type IProps = {
-  products: IProduct[];
-};
-
-export default function ProductsTable({ products }: IProps) {
-  const { setProduct } = useGlobalContext();
   const handleShow = (product: IProduct) => {
     setProduct(product);
   };
+  const handleDelete = (product: IProduct) => {
+    _setProduct(product);
+    setIsOpen(true);
+  };
+  const confirm = () => {
+    const _products = [...products].filter((prod) => prod.id !== _product.id);
+    setProduct({} as IProduct);
+    setProducts(_products);
+    setIsOpen(false);
+    toast.success(`${_product.title} Eliminado con exito!`);
+  };
+  useEffect(() => {
+    if (productsFilter.length) {
+      setPorductsList(productsFilter);
+    } else {
+      setPorductsList(products);
+    }
+  }, [productsFilter, products]);
   return (
     <div className="bg-white  w-full border rounded-2xl    px-3">
+      <Toaster position="top-center" reverseOrder={false} />
+      <ProductDelete
+        title={_product.title}
+        isOpen={ipsOpen}
+        setIsOpen={setIsOpen}
+        confirm={confirm}
+      />
       <table className="table-auto w-full text-sm lg:text-base">
         <thead>
           <tr className=" text-blue-500 text-left font-bold  border-b-2">
@@ -45,8 +61,8 @@ export default function ProductsTable({ products }: IProps) {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
+          {prodcutsList.map((product) => (
+            <tr key={product.id + product.title}>
               <td className="p-2 hidden sm:block">
                 <img
                   src={product.image}
@@ -73,7 +89,10 @@ export default function ProductsTable({ products }: IProps) {
                   onClick={() => handleShow(product)}>
                   <FabButton icon={updateIcon} />
                 </Link>
-                <FabButton icon={deleteIcon} />
+                <FabButton
+                  icon={deleteIcon}
+                  onClick={() => handleDelete(product)}
+                />
               </td>
             </tr>
           ))}

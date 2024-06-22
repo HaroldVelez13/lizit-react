@@ -1,17 +1,23 @@
 "use client ";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useId } from "react";
 import { useForm } from "react-hook-form";
-import { IProduct, useGlobalContext } from "../../context/store";
+import { IProduct } from "../../context/store";
 import ProductSchema from "../../schema/ProductSchema";
 
 type IProps = {
-  disabled?: boolean;
   submitRef: any;
+  product?: IProduct;
+  categories: string[];
+  disabled?: boolean;
+  onSubmit: (data: any) => void;
 };
-export default function ProductsForm({ disabled = false, submitRef }: IProps) {
-  const { product, categories, products, setProducts } = useGlobalContext();
-  const new_id = useId();
+export default function ProductsForm({
+  disabled = false,
+  submitRef,
+  product,
+  categories,
+  onSubmit,
+}: IProps) {
   const {
     register,
     handleSubmit,
@@ -20,20 +26,6 @@ export default function ProductsForm({ disabled = false, submitRef }: IProps) {
     resolver: yupResolver(ProductSchema),
     defaultValues: product ? product : {},
   });
-  const onSubmit = (data: any) => {
-    console.log("from form: ", data);
-    if (!product.id) {
-      const _product: IProduct = {
-        id: new_id,
-        image: "",
-        ...data,
-      };
-      const _products = products;
-      _products.push(_product);
-      setProducts(_products);
-      console.log("Product created: ", _product);
-    }
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -50,6 +42,9 @@ export default function ProductsForm({ disabled = false, submitRef }: IProps) {
             name="title"
             className=" text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 p-2  focus-visible:outline-none  focus-visible:border-blue-50"
           />
+          {errors.title && (
+            <p className="text-red-500 text-sm">{errors.title.message}</p>
+          )}
         </div>
         <div className="flex flex-col mb-6 mr-3">
           <label htmlFor="category" className="text-blue-50 font-semibold mb-2">
@@ -83,6 +78,9 @@ export default function ProductsForm({ disabled = false, submitRef }: IProps) {
             rows={4}
             className="text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 p-2  focus-visible:outline-none  focus-visible:border-blue-50"
           />
+          {errors.description && (
+            <p className="text-red-500 text-sm">{errors.description.message}</p>
+          )}
         </div>
 
         <div className="flex flex-col mb-6 ml-3">
@@ -99,10 +97,13 @@ export default function ProductsForm({ disabled = false, submitRef }: IProps) {
               type="number"
               id="price"
               name="price"
-              step="0.01"
+              step={0.01}
               className="w-full text-gray-500  shadow rounded-xl border-2 border-blue-50 disabled:border-gray-400 py-2 pr-1 pl-7  focus-visible:outline-none  focus-visible:border-blue-50"
             />
           </div>
+          {errors.price && (
+            <p className="text-red-500 text-sm">{errors.price.message}</p>
+          )}
         </div>
       </div>
       <button ref={submitRef} type="submit" className="invisible" />

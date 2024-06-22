@@ -6,12 +6,13 @@ export interface IRating {
   count: number;
 }
 export interface IProduct {
-  id: string | number;
+  id: number;
   title: string;
   price: number;
   description: string;
   category: string;
   image: string;
+  images?: string[];
   rating: IRating;
 }
 interface ContextProps {
@@ -19,6 +20,8 @@ interface ContextProps {
   setProduct: (prodcut: IProduct) => void;
   products: IProduct[];
   setProducts: (products: IProduct[]) => void;
+  productsFilter: IProduct[];
+  setProductsFilter: (products: IProduct[]) => void;
   categories: string[];
   setCategories: (categories: string[]) => void;
 }
@@ -28,6 +31,8 @@ export const GlobalContext = createContext<ContextProps>({
   setProduct: () => {},
   products: [] as IProduct[],
   setProducts: (products: IProduct[]) => [],
+  productsFilter: [] as IProduct[],
+  setProductsFilter: (products: IProduct[]) => [],
   categories: [],
   setCategories: (categories: string[]) => [],
 });
@@ -38,6 +43,7 @@ type IProps = {
 export const GlobalContextProvider = ({ children }: IProps) => {
   const [product, setProduct] = useState<IProduct>({} as IProduct);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [productsFilter, setProductsFilter] = useState<IProduct[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
 
   return (
@@ -47,6 +53,8 @@ export const GlobalContextProvider = ({ children }: IProps) => {
         setProduct,
         products,
         setProducts,
+        productsFilter,
+        setProductsFilter,
         categories,
         setCategories,
       }}>
